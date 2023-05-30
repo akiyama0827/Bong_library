@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="book_search">
+        <div class="btn_lang_input_box">
+            <button type="button" class="btn_lang_japan">일본어입력</button>
+            <button type="button" class="btn_lang_another">기타/다국어 입력</button>
+        </div>
+        <div class="search_line data_name">
+            <div class="select_wrapper first">
+                <select class="first" id="division1" name="division1" title="자료검색조건">
+                    
+                        <option selected="" value="ALL">전체</option>	
+                    
+                        <option value="TITL">자료명</option>	
+                    
+                        <option value="AUTH">저자</option>	
+                    
+                        <option value="PUBL">출판사</option>	
+                    
+                        <option value="SUBJ">주제</option>	
+                    
+                        <option value="ISBN">ISBN OR ISSN</option>	
+                    
+                        <option value="KDCN">KDCN</option>	
+                    
+                </select>
+            </div>
+            <input type="text" onfocus="setPosConfig('1');" id="searchCon1" name="searchCon1" title="첫번째 검색내용 입력">
+            <div class="select_wrapper last">
+                <select class="last" id="connect1" name="connect1" title="검색조건 추가 시 조건선택">
+                    <option value="A">그리고(AND)</option>
+                    <option value="O">또는(OR)</option>
+                    <option value="N">제외하고(NOT)</option>
+                </select>
+            </div>
+        </div>
+        <div class="search_line data_name">
+            <div class="select_wrapper first">
+                <select class="first" id="division2" name="division2" title="자료검색조건">
+                    
+                        <option value="ALL">전체</option>	
+                    
+                        <option selected="" value="TITL">자료명</option>	
+                    
+                        <option value="AUTH">저자</option>	
+                    
+                        <option value="PUBL">출판사</option>	
+                    
+                        <option value="SUBJ">주제</option>	
+                    
+                        <option value="ISBN">ISBN OR ISSN</option>	
+                    
+                        <option value="KDCN">KDCN</option>	
+                    
+                </select>
+            </div>
+            <input type="text" onfocus="setPosConfig('2');" id="searchCon2" name="searchCon2" title="두번째 검색내용 입력">
+            <div class="select_wrapper last">
+                <select class="last" id="connect2" name="connect2" title="검색조건 추가 시 조건선택">
+                    <option value="A">그리고(AND)</option>
+                    <option value="O">또는(OR)</option>
+                    <option value="N">제외하고(NOT)</option>
+                </select>
+            </div>
+        </div>
+        <div class="search_line data_name last">
+            <div class="select_wrapper first">
+                <select class="first" id="division3" name="division3" title="자료검색조건">
+                    
+                        <option value="ALL">전체</option>	
+                    
+                        <option value="TITL">자료명</option>	
+                    
+                        <option value="AUTH">저자</option>	
+                    
+                        <option selected="" value="PUBL">출판사</option>	
+                    
+                        <option value="SUBJ">주제</option>	
+                    
+                        <option value="ISBN">ISBN OR ISSN</option>	
+                    
+                        <option value="KDCN">KDCN</option>	
+                    
+                </select>
+            </div>
+            <input type="text" onfocus="setPosConfig('3');" id="searchCon3" name="searchCon3" title="세번째 검색내용 입력">
+        </div>
+        <div class="search_line data_type">
+            <div class="select_wrapper">
+                <select id="type" name="dataType" title="자료유형선택">
+                    <option selected="" value="ALL">전체</option>
+                    
+                        <option value="MA">단행본</option>	
+                    
+                        <option value="SE">연간물</option>	
+                    
+                        <option value="NB">비도서</option>	
+                    
+                        <option value="SM">장학자료</option>	
+                    
+                        <option value="OT">기타자료</option>	
+                    
+                </select>
+            </div>
+        </div>
+        <div class="search_line item_count">
+            <div class="select_wrapper">
+                <select id="line" name="lineSize" title="출력건수">
+                    <option selected="" value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                </select>
+            </div>
+            <span>건씩 </span>
+<script>
+$(document).ready(function(){
+$("#cbSortOrder").change(function() {
+var order = this.value;
+$("input:radio[name=cbSort]").each(function() {
+if(this.value.indexOf('-') == 0)
+    this.value = this.value.substring(1, this.value.length);
+this.value = order + this.value;
+});
+});
+
+var curOrder = '';
+if(curOrder == '') curOrder = 'STIT';
+if(curOrder.indexOf('-') == 0) {
+$("input:radio[name=cbSort]").each(function() {
+if(this.value.indexOf('-') == 0)
+    this.value = this.value.substring(1, this.value.length);
+this.value = "-" + this.value;
+});
+$("#cbSortOrder").val("-");
+curOrder = curOrder.substring(1, curOrder.length);
+}
+$("#"+curOrder).attr("checked", true);
+});
+</script>
+            <input type="radio" name="cbSort" id="STIT" value="STIT" checked="checked"><label for="STIT">서명</label>
+            <input type="radio" name="cbSort" id="SAUT" value="SAUT"><label for="SAUT">저자명</label>
+            <input type="radio" name="cbSort" id="SPUB" value="SPUB"><label for="SPUB">출판사</label>
+            <input type="radio" name="cbSort" id="PUBY" value="PUBY"><label for="PUBY">출판년도</label>
+            <div class="select_wrapper">
+                <select id="cbSortOrder">
+                    <option value="">오름차순</option>
+                    <option value="-">내림차순</option>
+                </select>
+            </div>
+            <span>으로 출력</span>
+        </div>
+        <div class="btn_search_box">
+            <button type="button" class="btn_search">검색</button>
+        </div>
+        <div class="comment">
+            <p class="caution">검색어는 특수문자를 생략하고 중요한 단어를 띄워서 입력하세요.</p>
+        </div>
+    </div>
+    <h1>
+        <span>G</span><span>u</span><span>k</span><span>g</span><span>l</span><span>e</span>
+      </h1>
+      <form action="https://www.google.com/search" method="GET">
+        <div class="mx-auto mt-5 search-bar input-group mb-3">
+          <input name="q" type="text" class="form-control rounded-pill" placeholder="Google 검색 또는 URL 입력" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <div class="input-group-append">
+          </div>
+        </div>
+      </form>
+</body>
+</html>
