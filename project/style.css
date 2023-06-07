@@ -9,6 +9,9 @@
     background-color: white;
     border-bottom: 3pt solid rgb(180, 180, 180);
 }
+.header > div {
+    text-align: center;
+}
 .footer {
     position: fixed;
     bottom: 0%;
