@@ -1,7 +1,7 @@
-const a = document.querySelector('a');
+const SearchBtn = document.querySelector('#search-btn');
 
 function SearchpageRedirect() {
-    window.open('https://reading.cbe.go.kr/r/newReading/search/schoolSearchForm.jsp')
+    window.open('https://reading.cbe.go.kr/r/newReading/search/schoolSearchForm.jsp');
 }
 
-a.addEventListener('click', SearchpageRedirect);
+SearchBtn.addEventListener('click', SearchpageRedirect);
